@@ -1,6 +1,6 @@
 # GDB-Flip
 
-This is a simple tool to programatically cause bitflips in a target binary.
+This is a simple tool to programmatically cause bitflips in a target binary.
 
 ## Setup
 
