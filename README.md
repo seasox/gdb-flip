@@ -4,7 +4,7 @@ This is a simple tool to programatically cause bitflips in a target binary.
 
 ## Setup
 
-To test your setup, run `make flip`. This should build the `test` binary and flip varaible `x` in `main.c` at bit position `1`. The expected output is:
+To test your setup, run `make flip`. This should build the `test` binary and flip variable `x` in `main.c` at bit position `1`. The expected output is:
 
 ```
 $ make flip
