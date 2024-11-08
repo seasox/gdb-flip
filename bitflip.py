@@ -1,6 +1,6 @@
 import gdb
 
-# Global variable to collect output messages
+# Global variable to collect output messages (regular printing doesn't work in GDB event hooks)
 output_messages = []
 
 class BitFlipCommand(gdb.Command):
@@ -34,7 +34,7 @@ class BitFlipCommand(gdb.Command):
         self.current_breakpoint.silent = True
         self.variable_name = variable_name
         self.bit_position = bit_position
-        output_messages.append(f"Breakpoint set at '{breakpoint_location}' to flip bit {bit_position} of '{variable_name}'")
+        print(f"Breakpoint set at '{breakpoint_location}' to flip bit {bit_position} of '{variable_name}'")
 
         # Hook stop to handle the breakpoint
         gdb.events.stop.connect(self.flip_bit_on_stop)
@@ -48,11 +48,11 @@ class BitFlipCommand(gdb.Command):
                 # Try to access the variable
                 var_info = frame.read_var(self.variable_name)
                 var_type = var_info.type
-                byte_position = self.bit_position // 8
                 if var_type.code == gdb.TYPE_CODE_ARRAY:
                     # Handle array variables by accessing the first element for bit flipping
                     # Assuming the array is of a standard type like char, int, etc.
                     element_type = var_type.target()
+                    byte_position = self.bit_position // 8
                     element_value = var_info[byte_position]  # find byte position
                 else:
                     element_value = var_info  # Single variable
