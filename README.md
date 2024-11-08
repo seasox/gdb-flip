@@ -10,9 +10,9 @@ To test your setup, run `make flip`. This should build the `test` binary and fli
 $ make flip
 gdb -x bitflip.py --batch -ex "bitflip_wrapper ./test test.c 6 x 1"
 Breakpoint 1 at 0x1190: file test.c, line 6.
-Comparing x against known value... failed! Expected 20, got 22
-[Inferior 1 (process 6511) exited with code 0377]
 Breakpoint set at 'test.c:6' to flip bit 1 of 'x'
+Comparing x against known value... failed! Expected 20, got 22
+[Inferior 1 (process 37892) exited with code 0377]
 Flipped bit 1 in 'x'; new value: 2
 ```
 
